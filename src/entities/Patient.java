@@ -40,17 +40,6 @@ public class Patient {
         this.medicalAttentions.add(medicalAttention);
     }
 
-    public List<MedicalAttention> getLatestMedicalAttentions(int count) {
-        List<MedicalAttention> allMedicalAttentions = this.getMedicalAttentions();
-        int size = allMedicalAttentions.size();
-
-        if (size <= count) {
-            return allMedicalAttentions;
-        } else {
-            return allMedicalAttentions.subList(size - count, size);
-        }
-    }
-
     public int getAge() {
         LocalDate currentDate = LocalDate.now();
         Period period = Period.between(getBirthDate(), currentDate);

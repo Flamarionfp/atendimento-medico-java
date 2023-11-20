@@ -18,14 +18,21 @@ public class ShowPatient {
 
         if (patient == null) throw new Exception("Paciente não encontrado.");
 
-        int showLastNAttentions = 5;
-        List<MedicalAttention> latestMedicalAttentions = patient.getLatestMedicalAttentions(showLastNAttentions);
+        System.out.println("Todas as consultas: ");
 
-        System.out.println("Paciente: " + patient);
+        List<MedicalAttention> medicalAttentions = patient.getMedicalAttentions();
+        int dividerIn = 5;
 
-        System.out.println("Últimas " + showLastNAttentions + " consultas: ");
-        for (MedicalAttention medicalAttention : latestMedicalAttentions) {
-            System.out.println(medicalAttention);
+        for (int i = 0; i < medicalAttentions.size(); i += dividerIn) {
+            System.out.println("-------------------");
+            int end = Math.min(i + dividerIn, medicalAttentions.size());
+            List<MedicalAttention> batch = medicalAttentions.subList(i, end);
+
+            for (MedicalAttention medicalAttention : batch) {
+                System.out.println(medicalAttention);
+            }
+
+            System.out.println("-------------------");
         }
     }
 }
